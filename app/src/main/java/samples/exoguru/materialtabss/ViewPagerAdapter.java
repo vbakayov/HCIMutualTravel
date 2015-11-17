@@ -4,6 +4,7 @@ package samples.exoguru.materialtabss;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
 
 /**
  * Created by Viktor on 11/5/2015.
@@ -12,6 +13,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
+    private  Tab2 tab2;
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
@@ -29,7 +31,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0: Tab1 tab1 = new Tab1();
                     return tab1;
-            case 1:  Tab2 tab2 = new Tab2();
+            case 1: tab2 = new Tab2();
                     return tab2;
             case 2:  Tab3 tab3 = new Tab3();
                     return tab3;

@@ -2,6 +2,7 @@ package samples.exoguru.materialtabss;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
@@ -49,6 +51,9 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.andexert.expandablelayout.library.ExpandableLayout;
+import com.andexert.expandablelayout.library.ExpandableLayoutListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,6 +132,11 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
             }
 
         });
+
+        ((CheckBox) v.findViewById(R.id.smoking)).setOnClickListener(new CheckBoxListener());
+        ((CheckBox) v.findViewById(R.id.pets)).setOnClickListener( new CheckBoxListener());
+
+        final ExpandableLayout expandableLayoutView = (ExpandableLayout) v.findViewById(R.id.advancedOptions);
         return v;
     }
 
@@ -175,6 +185,51 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
 
+    }
+
+    public  class CheckBoxListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            // Is the view now checked?
+            boolean checked = ((CheckBox) view).isChecked();
+
+            // Check which checkbox was clicked
+            switch(view.getId()) {
+                case R.id.smoking:
+                    if (checked) {
+                        // Put some meat on the sandwich
+                        Log.w("Check","Checked");
+                    }
+                    else
+                        // Remove the meat
+                        break;
+                case R.id.pets:
+                    if (checked) {
+                        // Cheese me
+                    }
+                    else
+                        // I'm lactose intolerant
+                        break;
+                case R.id.food:
+                    if (checked) {
+                        // Put some meat on the sandwich
+                        Log.w("Check","Checked");
+                    }
+                    else
+                        // Remove the meat
+                        break;
+                case R.id.music:
+                    if (checked) {
+                        // Cheese me
+                    }
+                    else
+                        // I'm lactose intolerant
+                        break;
+
+            }
+
+
+        }
     }
 
 
