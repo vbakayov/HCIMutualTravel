@@ -1,5 +1,6 @@
 package samples.exoguru.materialtabss;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,19 +11,30 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class Tab1 extends Fragment {
 
     private static final String TAG = "Profile Tab";
 
+    private ArrayList<String> posts;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_1,container,false);
 
-        String[] posts = {"Glasgow -> London", "Mezdra -> Sofia", "Varna -> Bourgas", "Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad"};
+       // String[] posts = {"Glasgow -> London", "Mezdra -> Sofia", "Varna -> Bourgas", "Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad"};
         String[] history = {"Glasgow -> London", "Mezdra -> Sofia"};
+
+        posts = new ArrayList<>();
+        posts.add("Glasgow -> London");
+        posts.add("Mezdra -> Sofia");
+        posts.add("Varna -> Bourgas");
+        posts.add("Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad");
 
         // adapter for posts
         ListAdapter adapter = new CustomListViewAdapter(v.getContext(), posts);
@@ -43,9 +55,32 @@ public class Tab1 extends Fragment {
 //                    }
 //                }
 //        );
+
+        // rating bar
+        RatingBar rb = (RatingBar) v.findViewById(R.id.mRating);
+
+
+        rb.setOnRatingBarChangeListener(
+                new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean b) {
+                        String numStars = String.valueOf(rating);
+                        Toast.makeText(Tab1.super.getActivity(), "The new rating is " + numStars,Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+//        rb.setOnClickListener(
+//                new View.OnClickListener(){
+//                    @Override
+//                    public void onClick(View view) {
+//                        Toast.makeText(view.getContext(), "Somethuing",Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        );
+
         return v;
     }
-
 
 
 }
