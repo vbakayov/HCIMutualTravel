@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="adasdasdadaadsadasdadasdasdasdasdasdadasdasdadaadsadasdadasdasdasdasdasd"
+        android:text="Post Text"
         android:id="@+id/mPostText"
         android:layout_margin="10dp"
         android:maxWidth="250dp"
