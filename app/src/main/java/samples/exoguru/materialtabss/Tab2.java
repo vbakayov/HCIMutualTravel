@@ -3,6 +3,7 @@ package samples.exoguru.materialtabss;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -136,6 +137,14 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
         ((CheckBox) v.findViewById(R.id.smoking)).setOnClickListener(new CheckBoxListener());
         ((CheckBox) v.findViewById(R.id.pets)).setOnClickListener( new CheckBoxListener());
 
+        Button buttonSearch = (Button) v.findViewById(R.id.buttonSearch);
+        buttonSearch.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), ListActivity.class);
+                myIntent.putExtra("key", 10); //Optional parameters
+                getActivity().startActivity(myIntent);
+            }
+        });
         final ExpandableLayout expandableLayoutView = (ExpandableLayout) v.findViewById(R.id.advancedOptions);
         return v;
     }

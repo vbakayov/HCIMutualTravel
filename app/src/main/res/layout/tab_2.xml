@@ -146,7 +146,7 @@
 
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonSearch"
         android:text="Search"
         android:textColor="#FFFFFFFF"
         android:textSize="15dp"
