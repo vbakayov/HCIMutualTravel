@@ -27,7 +27,7 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity{
     private static Trip clickedTrip;
     int onStartCount = 0;
-    private List<Trip> trips = new ArrayList<>();
+    private TripStorage trips;
 
 
     @Override
@@ -35,6 +35,8 @@ public class ListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_list);
+
+        trips= TripStorage.getInstance();
 
         //for animation the activity
         onStartCount = 1;
@@ -101,7 +103,7 @@ public class ListActivity extends AppCompatActivity{
 
     private class MyListAdapter extends ArrayAdapter<Trip>{
         public 	MyListAdapter(){
-            super(ListActivity.this,R.layout.list_row, trips);
+            super(ListActivity.this,R.layout.list_row, trips.getTrips());
         }
 
         @Override
@@ -113,7 +115,7 @@ public class ListActivity extends AppCompatActivity{
             }
 
             //Find trip to work with
-            Trip currentTrip = trips.get(position);
+            Trip currentTrip = trips.getTrips().get(position);
             //Fill the view
             ImageView imageView = (ImageView) itemView.findViewById(R.id.list_image);
             imageView.setImageResource(getResources().getIdentifier("myphoto", "drawable", getPackageName()));
@@ -145,7 +147,7 @@ public class ListActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long ID) {
                 //which trips we are currently
-               clickedTrip = trips.get(position);
+               clickedTrip = trips.getTrips().get(position);
 
                 //build and center the toast
                 Toast toast =Toast.makeText(ListActivity.this, clickedTrip.getOwnerName(), Toast.LENGTH_LONG);
@@ -165,15 +167,15 @@ public class ListActivity extends AppCompatActivity{
     }
 
     private void populateTripView() {
-        trips.add(new Trip("Viktor", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",10));
-        trips.add(new Trip("Viktor2", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",20));
-        trips.add(new Trip("Viktor3", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",30));
-        trips.add(new Trip("Viktor4", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",40));
-        trips.add(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",50));
-        trips.add(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",60));
-        trips.add(new Trip("Viktor7", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",70));
-        trips.add(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",80));
-        trips.add(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",90));
+        trips.addTrip(new Trip("Viktor", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",10));
+        trips.addTrip(new Trip("Viktor2", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",20));
+        trips.addTrip(new Trip("Viktor3", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",30));
+        trips.addTrip(new Trip("Viktor4", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",40));
+        trips.addTrip(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",50));
+        trips.addTrip(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",60));
+        trips.addTrip(new Trip("Viktor7", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",70));
+        trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",80));
+        trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",90));
 
 
 
