@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/postFragment"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent">
 
     <!-- NOT SO IMPORTANT CUSTOM UI STUFF -->
-    <TextView
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/buttonSeatsPost"
+        android:text="Post Seats"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tab 4 says Hello :D"
-        android:id="@+id/textView"
-        android:textColor="@color/tabsScrollColor"
-        android:layout_centerVertical="true"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonLuggagePost"
+        android:text="Post Luggage"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_below="@+id/buttonSeatsPost"
+        android:layout_alignLeft="@+id/buttonSeatsPost"
+        android:layout_alignStart="@+id/buttonSeatsPost"
+        android:layout_marginTop="140dp" />
 
 </RelativeLayout>

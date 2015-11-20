@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.Date;
 
 /**
  *
@@ -56,8 +60,12 @@ public class MainActivity extends ActionBarActivity {
         tabs.setViewPager(pager);
 
 
+        populateTripView();
+
 
     }
+
+
 
 
     @Override
@@ -80,5 +88,36 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+             Button button;
+            button = (Button) findViewById(R.id.buttonSeatsPost);
+                    button.setVisibility(View.VISIBLE);
+            button = (Button) findViewById(R.id.buttonLuggagePost);
+                    button.setVisibility(View.VISIBLE);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
+
+    private void populateTripView() {
+        TripStorage trips = TripStorage.getInstance();
+        trips.addTrip(new Trip("Viktor", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 10));
+        trips.addTrip(new Trip("Viktor2", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 20));
+        trips.addTrip(new Trip("Viktor3", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 30));
+        trips.addTrip(new Trip("Viktor4", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 40));
+        trips.addTrip(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 50));
+        trips.addTrip(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 60));
+        trips.addTrip(new Trip("Viktor7", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 70));
+        trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 80));
+        trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 90));
+
+
+
+
     }
 }

@@ -1,11 +1,12 @@
 package samples.exoguru.materialtabss;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Viktor on 11/19/2015.
  */
-public class Trip {
+public class Trip implements Serializable {
     private String ownerName;
     private String fromTown;
     private String toTown;

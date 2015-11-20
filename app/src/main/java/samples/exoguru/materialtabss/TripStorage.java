@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Viktor on 11/19/2015.
- * Singleton class stroing all the trips in the system
+ * Singleton class storing all the trips in the system
  */
 public class TripStorage {
 

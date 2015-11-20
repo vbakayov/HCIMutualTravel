@@ -2,7 +2,6 @@ package samples.exoguru.materialtabss;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -38,27 +37,34 @@ import com.andexert.expandablelayout.library.ExpandableLayout;
 /**
  * Created by Viktor on 11/5/2015.
  */
-public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener {
-    private DatePicker datePicker;
+public class SeatPostFragment extends Fragment implements NumberPicker.OnValueChangeListener {
     private Calendar calendar;
-    private   ArrayList<String> cities;
-    private static EditText dateView;
+    private static EditText DateView;
+    private static Date date;
     private EditText seatView;
+    private EditText priceView;
     private AutoCompleteTextView toView;
     private AutoCompleteTextView fromView;
     private  boolean smoking;
-    private boolean pets;
     private boolean food;
+    private boolean pets;
     private boolean music;
-    private  static Date date;
 
+    ArrayList<String> cities;
 
     @Override
     public  void onCreate(Bundle saved){
         super.onCreate(saved);
 
+
+
         calendar = Calendar.getInstance();
         cities = new ArrayList<>();
+
+        smoking = false;
+        food= false;
+        pets= false;
+        music=true;
 
         loadJSONFromAsset();
 
@@ -68,27 +74,30 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v =inflater.inflate(R.layout.tab_2, container,false);
+        View v =inflater.inflate(R.layout.post_seats_offer, container,false);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (getActivity(),android.R.layout.select_dialog_item,cities);
-        toView = (AutoCompleteTextView)
-                v.findViewById(R.id.autoCompleteTextView1);
+        toView = (AutoCompleteTextView)  v.findViewById(R.id.autoCompleteTextView1);
         toView.setThreshold(2);
         toView.setAdapter(adapter);
 
-        fromView = (AutoCompleteTextView)
-                v.findViewById(R.id.autoCompleteTextView2);
+        fromView = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView2);
         fromView.setThreshold(2);
         fromView.setAdapter(adapter);
 
-        dateView= (EditText)v.findViewById(R.id.depart);
-        dateView.setKeyListener(null);
+        DateView = (EditText)v.findViewById(R.id.depart);
+        DateView.setKeyListener(null);
 
         seatView = (EditText) v.findViewById(R.id.seats);
         seatView.setKeyListener(null);
+
+        priceView = (EditText) v.findViewById(R.id.pricePost);
+        priceView.setKeyListener(null);
+
+
         //set listenr for the  depart EditTxt
-        dateView.setOnClickListener(new View.OnClickListener() {
+        DateView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -106,18 +115,24 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
 
         });
 
+        //set listenr for the seats EditTxt
+        priceView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                showNumberPickerPrice();
+            }
+
+
+        });
+
         ((CheckBox) v.findViewById(R.id.smoking)).setOnClickListener(new CheckBoxListener());
         ((CheckBox) v.findViewById(R.id.pets)).setOnClickListener( new CheckBoxListener());
 
-        Button buttonSearch = (Button) v.findViewById(R.id.buttonSearch);
+        Button buttonSearch = (Button) v.findViewById(R.id.buttonPostSeats);
         buttonSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                 ArrayList list = filterSearch();
-                if(list != null) {
-                    Intent myIntent = new Intent(getActivity(), ListActivity.class);
-                    myIntent.putExtra("filtered", list); //pass the filted array with the trips
-                    getActivity().startActivity(myIntent);
-                }
+                    postTrip();
             }
         });
         final ExpandableLayout expandableLayoutView = (ExpandableLayout) v.findViewById(R.id.advancedOptions);
@@ -182,31 +197,31 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
                 case R.id.smoking:
                     if (checked) {
                         smoking= true;
-
+                        Log.w("Check","Checked");
+                    }
+                    else
+                        smoking= false;
+                        break;
+                case R.id.pets:
+                    if (checked) {
+                        pets=true;
                     }
                     else
                         smoking=false;
                         break;
-                case R.id.pets:
-                    if (checked) {
-                        pets = true;
-                    }
-                    else
-                        pets= false;
-                        break;
                 case R.id.food:
                     if (checked) {
-                        food = true;
+                       food=true;
                     }
                     else
-                        food= false;
+                       food=false;
                         break;
                 case R.id.music:
                     if (checked) {
-                        music= true;
+                        music=true;
                     }
                     else
-                        music= false;
+                        music=false;
                         break;
 
             }
@@ -232,9 +247,9 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            dateView.setText(new StringBuilder().append(day).append("/")
+            DateView.setText(new StringBuilder().append(day).append("/")
                     .append(month+1).append("/").append(year));
-
+            //create data object
             String date_s= Integer.toString(day)+Integer.toString(month)+Integer.toString(year);
             SimpleDateFormat dt = new SimpleDateFormat("ddMMyyyy");
             try {
@@ -244,12 +259,9 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
             }
 
         }
-
     }
-
     public void showNumberPicker()
     {
-
         final Dialog d = new Dialog(getActivity());
         d.setTitle("NumberPicker");
         d.setContentView(R.layout.numberdialog);
@@ -276,41 +288,64 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
             }
         });
         d.show();
-
-
     }
 
 
-    private ArrayList<Trip> filterSearch() {
+    private void showNumberPickerPrice() {
+        final Dialog d = new Dialog(getActivity());
+        d.setTitle("NumberPicker");
+        d.setContentView(R.layout.numberdialog);
+        Button b1 = (Button) d.findViewById(R.id.button1);
+        Button b2 = (Button) d.findViewById(R.id.button2);
+        final NumberPicker np = (NumberPicker) d.findViewById(R.id.numberPicker1);
+        np.setMaxValue(10000);
+        np.setMinValue(0);
+        np.setWrapSelectorWheel(false);
+        np.setOnValueChangedListener(this);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                priceView.setText(String.valueOf(np.getValue()));
+                d.dismiss();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                d.dismiss();
+            }
+        });
+        d.show();
+    }
+    private void  postTrip(){
 
+//        private static EditText DateView;
+//        private int year, month, day;
+//        private EditText seatView;
         String from = fromView.getText().toString();
         String to = toView.getText().toString();
+        String price2= priceView.getText().toString();
         String seats2 = seatView.getText().toString();
 
-
-        if (!from.equals("") && !to.equals("") &&   !seats2.equals("")) {
-
+        if (!from.equals("") && !to.equals("") && !price2.equals("") && !seats2.equals("")) {
             int seats = Integer.parseInt(seats2);
-            ArrayList<Trip> filtered = new ArrayList<Trip>();
+            int price = Integer.parseInt(price2);
 
             TripStorage storage = TripStorage.getInstance();
-             ArrayList<Trip> trips =   storage.getTrips();
-            Log.w("date1", date.toString());
-            for ( int i = 0 ; i< trips.size(); i++){
-                    Trip trip = trips.get(i);
-                    Log.w("date2",trip.getTime().toString());
-                   if (from.equals(trip.getFromTown()) && to.equals(trip.getToTown()) && seats < trip.getSeatsAvailable() && date.compareTo(trip.getTime())==0){
-                       filtered.add(trip);
-                   }
-            }
-            if (filtered.size() == 0){
-                Toast.makeText(getActivity(), "No Results Found!", Toast.LENGTH_LONG).show();
-                return  null;
-            }
-            return  filtered;
+            storage.addTrip(new Trip("FromPost", from, to, date, seats, smoking, food, pets, music, "none", price));
+            Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
+            fromView.setText("");
+            toView.setText("");
+            DateView.setText("");
+            priceView.setText("");
+            seatView.setText("");
+            calendar.clear();
+        }else{
+            Toast.makeText(getActivity(), "Please fill all fields!", Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(getActivity(), "Please fill all the fields!", Toast.LENGTH_LONG).show();
-        return null;
-    }
 
+
+    }
 }

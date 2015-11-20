@@ -2,6 +2,7 @@ package samples.exoguru.materialtabss;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.baoyz.widget.PullRefreshLayout;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity{
     private static Trip clickedTrip;
     int onStartCount = 0;
-    private TripStorage trips;
+    private ArrayList<Trip> trips;
 
 
     @Override
@@ -35,8 +37,8 @@ public class ListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_list);
-
-        trips= TripStorage.getInstance();
+        Log.d("LIST CREATED", "INITIALIZED");
+         trips = (ArrayList<Trip>) getIntent().getSerializableExtra("filtered");
 
         //for animation the activity
         onStartCount = 1;
@@ -70,7 +72,6 @@ public class ListActivity extends AppCompatActivity{
         layout.setRefreshing(false);
 
         populateListView();
-        populateTripView();
         registerClickCallback();
 
 
@@ -103,7 +104,7 @@ public class ListActivity extends AppCompatActivity{
 
     private class MyListAdapter extends ArrayAdapter<Trip>{
         public 	MyListAdapter(){
-            super(ListActivity.this,R.layout.list_row, trips.getTrips());
+            super(ListActivity.this,R.layout.list_row, trips);
         }
 
         @Override
@@ -115,7 +116,7 @@ public class ListActivity extends AppCompatActivity{
             }
 
             //Find trip to work with
-            Trip currentTrip = trips.getTrips().get(position);
+            Trip currentTrip = trips.get(position);
             //Fill the view
             ImageView imageView = (ImageView) itemView.findViewById(R.id.list_image);
             imageView.setImageResource(getResources().getIdentifier("myphoto", "drawable", getPackageName()));
@@ -131,10 +132,12 @@ public class ListActivity extends AppCompatActivity{
             fromTown.setText(currentTrip.getToTown());
 
             TextView date = (TextView) itemView.findViewById(R.id.dateList);
-            date.setText(currentTrip.getTime().toString());
+            SimpleDateFormat ft =
+                    new SimpleDateFormat("dd/MM/yyyy");
+            date.setText("Date: "+ft.format(currentTrip.getTime()));
 
             TextView price = (TextView) itemView.findViewById(R.id.priceList);
-            price.setText(Integer.toString(currentTrip.getPrice()));
+            price.setText("Price: " +Integer.toString(currentTrip.getPrice())+"£");
 
 
             return itemView;
@@ -147,10 +150,10 @@ public class ListActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long ID) {
                 //which trips we are currently
-               clickedTrip = trips.getTrips().get(position);
+                clickedTrip = trips.get(position);
 
                 //build and center the toast
-                Toast toast =Toast.makeText(ListActivity.this, clickedTrip.getOwnerName(), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(ListActivity.this, clickedTrip.getOwnerName(), Toast.LENGTH_LONG);
                 LinearLayout layout = (LinearLayout) toast.getView();
                 if (layout.getChildCount() > 0) {
                     TextView tv = (TextView) layout.getChildAt(0);
@@ -158,29 +161,12 @@ public class ListActivity extends AppCompatActivity{
                 }
                 toast.show();
 
-//                Intent intent = new Intent(MapLocation.this, TabLayoutActivity.class);
-//                startActivity(intent);
-
             }
         });
 
     }
 
-    private void populateTripView() {
-        trips.addTrip(new Trip("Viktor", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",10));
-        trips.addTrip(new Trip("Viktor2", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",20));
-        trips.addTrip(new Trip("Viktor3", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",30));
-        trips.addTrip(new Trip("Viktor4", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",40));
-        trips.addTrip(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",50));
-        trips.addTrip(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",60));
-        trips.addTrip(new Trip("Viktor7", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",70));
-        trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",80));
-        trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg",90));
 
-
-
-
-    }
 }
 
 

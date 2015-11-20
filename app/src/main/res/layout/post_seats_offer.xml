@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:expandable="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.wrapp.example.floatlabelededittext.MainActivity">
+
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="00dp"
+        float:fletPadding="1dp"
+        android:id="@+id/view2"
+        android:layout_below="@+id/view"
+        android:layout_toRightOf="@+id/marker2"
+        android:layout_toEndOf="@+id/marker2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="To"
+            android:layout_alignRight="@+id/marker2"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/view"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/view3" />
+
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+    <ImageView
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:id="@+id/marker2"
+        android:src="@drawable/marker"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
+        android:layout_alignBottom="@+id/view2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/view" />
+
+
+    <!-- add some padding -->
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        float:fletPadding="1dp"
+        android:id="@+id/view"
+        android:layout_toRightOf="@+id/marker1"
+        android:layout_toEndOf="@+id/marker1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="From" />
+
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="54dp"
+            android:ems="10" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+    <ImageView
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:id="@+id/marker1"
+        android:src="@drawable/marker"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
+        android:layout_alignTop="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        float:fletPadding="1dp"
+        android:id="@+id/view3"
+        android:layout_below="@+id/view2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/depart"
+            android:layout_width="120dp"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:hint="Depart"
+            android:layout_below="@+id/view2"
+            android:layout_marginTop="52dp" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        float:fletPadding="1dp"
+        android:id="@+id/view5"
+        android:layout_below="@+id/view2"
+        android:layout_alignRight="@+id/view2"
+        android:layout_toRightOf="@+id/view3"
+        android:layout_alignEnd="@+id/view2">
+
+        <EditText
+            android:id="@+id/pricePost"
+            android:layout_width="80dp"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:layout_below="@+id/view2"
+            android:layout_marginTop="52dp" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        float:fletPadding="1dp"
+        android:id="@+id/view4"
+        android:layout_below="@+id/view2"
+        android:layout_alignRight="@+id/view2"
+        android:layout_alignEnd="@+id/view2">
+
+        <EditText
+            android:id="@+id/seats"
+            android:layout_width="120dp"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:hint="Seats"
+            android:layout_below="@+id/view2"
+            android:layout_marginTop="52dp" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <com.andexert.expandablelayout.library.ExpandableLayout
+        android:id="@+id/advancedOptions"
+        android:paddingTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        expandable:headerLayout="@layout/view_header_tab2expandable"
+        expandable:contentLayout="@layout/view_content_tab2expandable"
+        android:layout_below="@+id/view4"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/buttonPostSeats"
+        android:text="Post"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_below="@+id/advancedOptions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+
+</RelativeLayout>
