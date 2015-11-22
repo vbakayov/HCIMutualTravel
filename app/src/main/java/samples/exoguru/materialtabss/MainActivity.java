@@ -116,6 +116,11 @@ public class MainActivity extends ActionBarActivity {
         trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 80));
         trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 90));
 
+        trips.addTrip(new Trip("Viktor", "London", "Paris", new Date(), 3, true, true, true, true, "msg", 10));
+        trips.addTrip(new Trip("Viktor2", "London", "Manchester", new Date(), 5, true, true, true, true, "msg", 20));
+        trips.addTrip(new Trip("Viktor3", "Gabrovo", "London", new Date(), 6, true, true, true, true, "msg", 30));
+        trips.addTrip(new Trip("Viktor4", "maikati", "bashtati", new Date(), 3, true, true, true, true, "msg", 40));
+
 
 
 

@@ -112,7 +112,9 @@ public class Tab2 extends Fragment implements NumberPicker.OnValueChangeListener
         Button buttonSearch = (Button) v.findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                 ArrayList list = filterSearch();
+               //  ArrayList list = filterSearch();
+                TripStorage storage = TripStorage.getInstance();
+                ArrayList<Trip> list=   storage.getTrips();
                 if(list != null) {
                     Intent myIntent = new Intent(getActivity(), ListActivity.class);
                     myIntent.putExtra("filtered", list); //pass the filted array with the trips

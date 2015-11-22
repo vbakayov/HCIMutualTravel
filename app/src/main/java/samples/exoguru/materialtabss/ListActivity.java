@@ -1,5 +1,6 @@
 package samples.exoguru.materialtabss;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,12 +17,10 @@ import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+import samples.exoguru.materialtabs.TripActivity;
 
 /**
  * Created by Viktor on 11/18/2015.
@@ -151,7 +150,9 @@ public class ListActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long ID) {
                 //which trips we are currently
                 clickedTrip = trips.get(position);
-
+                Intent myIntent = new Intent(ListActivity.this, TripActivity.class);
+                myIntent.putExtra("trip", clickedTrip); //Optional parameters
+                ListActivity.this.startActivity(myIntent);
                 //build and center the toast
                 Toast toast = Toast.makeText(ListActivity.this, clickedTrip.getOwnerName(), Toast.LENGTH_LONG);
                 LinearLayout layout = (LinearLayout) toast.getView();

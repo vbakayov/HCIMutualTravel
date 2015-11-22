@@ -27,4 +27,5 @@ dependencies {
     compile 'com.github.traex.expandablelayout:library:1.2.2'
     compile 'com.github.ppamorim:dragger:1.1'
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
+    compile 'com.google.android.gms:play-services:8.1.0'
 }
