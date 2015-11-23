@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 import samples.exoguru.materialtabs.TripActivity;
 
+import static samples.exoguru.materialtabss.R.layout.list_row;
+
 /**
  * Created by Viktor on 11/18/2015.
  */
@@ -105,7 +107,7 @@ public class ListActivity extends AppCompatActivity{
 
     private class MyListAdapter extends ArrayAdapter<Trip>{
         public 	MyListAdapter(){
-            super(ListActivity.this,R.layout.list_row, trips);
+            super(ListActivity.this, list_row, trips);
         }
 
         @Override
@@ -113,7 +115,7 @@ public class ListActivity extends AppCompatActivity{
             //Make sure we have a view to work with(may have been given null)
             View itemView = convertView;
             if(itemView == null){
-                itemView = getLayoutInflater().inflate(R.layout.list_row, parent,false);
+                itemView = getLayoutInflater().inflate(list_row, parent,false);
             }
 
             //Find trip to work with
@@ -122,19 +124,17 @@ public class ListActivity extends AppCompatActivity{
             RelativeLayout mRowLayout = (RelativeLayout) itemView.findViewById(R.id.mRowLayout);
             if(currentTrip.getGroup().equals("Contacts")) {
                 Log.i("LIST ACTIVITY", "Contacts");
-                mRowLayout.setBackgroundColor(Color.parseColor("#00cc00"));
+                mRowLayout.setBackgroundResource(R.drawable.list_selector_green);
+
             }
             else if(currentTrip.getGroup().equals("Facebook")) {
                 Log.i("LIST ACTIVITY", "Facebook");
-                mRowLayout.setBackgroundColor(Color.parseColor("#0066ff"));
+                mRowLayout.setBackgroundResource(R.drawable.list_selector_blue);
             }
-            else{
-                Log.i("LIST ACTIVITY", "Else ... " + currentTrip.getGroup());
-            }
-//            else{
-//                mRowLayout.setBackgroundColor(Color.parseColor("#000000"));
-//
-//            }
+            else if(currentTrip.getGroup().equals("Default")){
+                mRowLayout.setBackgroundResource(R.drawable.list_selector);
+
+        }
 
 
 

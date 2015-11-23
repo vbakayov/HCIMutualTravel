@@ -114,9 +114,9 @@ public class MainActivity extends ActionBarActivity {
         trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 80, "Default"));
         trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 90, "Default"));
         trips.addTrip(new Trip("Viktor", "London", "Paris", new Date(), 3, true, true, true, true, "msg", 10, "Default"));
-        trips.addTrip(new Trip("Viktor2", "London", "Manchester", new Date(), 5, true, true, true, true, "msg", 20, "Default"));
-        trips.addTrip(new Trip("Viktor3", "Gabrovo", "London", new Date(), 6, true, true, true, true, "msg", 30, "Default"));
-        trips.addTrip(new Trip("Viktor4", "maikati", "bashtati", new Date(), 3, true, true, true, true, "msg", 40, "Default"));
+        trips.addTrip(new Trip("Viktor10", "London", "Manchester", new Date(), 5, true, true, true, true, "msg", 20, "Default"));
+        trips.addTrip(new Trip("Viktor11", "Gabrovo", "London", new Date(), 6, true, true, true, true, "msg", 30, "Default"));
+        trips.addTrip(new Trip("Viktor12", "maikati", "bashtati", new Date(), 3, true, true, true, true, "msg", 40, "Default"));
 
         profile = Profile.getInstance();
         profile.setTrips(trips.getTrips());
