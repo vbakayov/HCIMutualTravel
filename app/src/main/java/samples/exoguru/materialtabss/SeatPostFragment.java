@@ -69,6 +69,8 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
         loadJSONFromAsset();
 
 
+
+
     }
 
     @Override
@@ -96,7 +98,7 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
         priceView.setKeyListener(null);
 
 
-        //set listenr for the  depart EditTxt
+        //set listener for the  depart EditTxt
         DateView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -105,7 +107,7 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
             }
 
         });
-        //set listenr for the seats EditTxt
+        //set listener for the seats EditTxt
         seatView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -115,7 +117,7 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
 
         });
 
-        //set listenr for the seats EditTxt
+        //set listener for the seats EditTxt
         priceView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -336,6 +338,14 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
             TripStorage storage = TripStorage.getInstance();
             storage.addTrip(new Trip("FromPost", from, to, date, seats, smoking, food, pets, music, "none", price));
             Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
+
+            Profile profile = Profile.getInstance();
+            profile.setTrips(storage.getTrips());
+
+
+
+            Log.i("POST A TRIP", "Profile: " + profile.getTrips().size());
+
             fromView.setText("");
             toView.setText("");
             DateView.setText("");

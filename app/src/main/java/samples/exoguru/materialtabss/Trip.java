@@ -83,4 +83,8 @@ public class Trip implements Serializable {
 
         return price;
     }
+
+    public String toString(){
+        return this.fromTown + " to " + this.toTown;
+    }
 }

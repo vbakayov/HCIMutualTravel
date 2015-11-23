@@ -1,6 +1,5 @@
 package samples.exoguru.materialtabss;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -22,6 +20,7 @@ public class Tab1 extends Fragment {
     private static final String TAG = "Profile Tab";
 
     private ArrayList<String> posts;
+    private ArrayList<Trip> trips;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +34,19 @@ public class Tab1 extends Fragment {
         posts.add("Mezdra -> Sofia");
         posts.add("Varna -> Bourgas");
         posts.add("Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad");
+
+
+
+
+        //Log.i(TAG, "Profile: " + profile.toString());
+
+
+//        for(Trip trip : trips){
+//            posts.add(trip.toString());
+//        }
+
+       // Log.i("TAG", trips.)
+
 
         // adapter for posts
         ListAdapter adapter = new CustomListViewAdapter(v.getContext(), posts);
@@ -69,16 +81,7 @@ public class Tab1 extends Fragment {
                     }
                 }
         );
-
-//        rb.setOnClickListener(
-//                new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View view) {
-//                        Toast.makeText(view.getContext(), "Somethuing",Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//        );
-
+        
         return v;
     }
 
