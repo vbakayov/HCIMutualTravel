@@ -13,31 +13,30 @@ public class Trip implements Serializable {
     private String toTown;
     private Date time;
     private Integer seatsAvailable;
-    private boolean smooking;
+    private boolean smoking;
     private boolean food;
     private boolean pets;
     private boolean music;
     private String shortText;
     private int price;
+    private String group;
 
-
-    public Trip(String ownerName, String fromTown, String toTown, Date time, Integer seatsAvailable, boolean smooking, boolean food, boolean pets, boolean music, String shortText, int price) {
+    public Trip(String ownerName, String fromTown, String toTown, Date time, Integer seatsAvailable, boolean smoking, boolean food, boolean pets, boolean music, String shortText, int price, String group) {
 
         this.ownerName = ownerName;
         this.fromTown = fromTown;
         this.toTown = toTown;
         this.time = time;
         this.seatsAvailable = seatsAvailable;
-        this.smooking = smooking;
+        this.smoking = smoking;
         this.food = food;
         this.pets = pets;
         this.music = music;
         this.shortText = shortText;
         this.price= price;
+        this.group = group;
+
     }
-
-
-
 
     public String getOwnerName() {
         return ownerName;
@@ -59,8 +58,8 @@ public class Trip implements Serializable {
         return seatsAvailable;
     }
 
-    public boolean isSmooking() {
-        return smooking;
+    public boolean isSmoking() {
+        return smoking;
     }
 
     public boolean isFood() {
@@ -81,8 +80,11 @@ public class Trip implements Serializable {
 
 
     public int getPrice() {
-
         return price;
+    }
+
+    public String getGroup() {
+        return group;
     }
 
     public String toString(){

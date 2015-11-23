@@ -51,6 +51,7 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
     private boolean pets;
     private boolean music;
 
+
     ArrayList<String> cities;
 
     @Override
@@ -336,8 +337,11 @@ public class SeatPostFragment extends Fragment implements NumberPicker.OnValueCh
             int seats = Integer.parseInt(seats2);
             int price = Integer.parseInt(price2);
 
+            // SET GROUP
+            String group = "Facebook";
+
             TripStorage storage = TripStorage.getInstance();
-            storage.addTrip(new Trip("FromPost", from, to, date, seats, smoking, food, pets, music, "none", price));
+            storage.addTrip(new Trip("FromPost", from, to, date, seats, smoking, food, pets, music, "none", price, group));
             Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
 
             Profile profile = Profile.getInstance();

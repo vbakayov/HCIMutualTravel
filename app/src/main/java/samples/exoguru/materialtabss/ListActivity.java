@@ -1,6 +1,7 @@
 package samples.exoguru.materialtabss;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,7 +98,7 @@ public class ListActivity extends AppCompatActivity{
 
         //Configurate the list view
         ListView list = (ListView) findViewById(R.id.listMain);
-        list.setBackgroundResource(R.drawable.gradient_bg);;
+//        list.setBackgroundResource(R.drawable.gradient_bg);;
         list.setAdapter(adapter);
     }
 
@@ -116,6 +118,26 @@ public class ListActivity extends AppCompatActivity{
 
             //Find trip to work with
             Trip currentTrip = trips.get(position);
+
+            RelativeLayout mRowLayout = (RelativeLayout) itemView.findViewById(R.id.mRowLayout);
+            if(currentTrip.getGroup().equals("Contacts")) {
+                Log.i("LIST ACTIVITY", "Contacts");
+                mRowLayout.setBackgroundColor(Color.parseColor("#00cc00"));
+            }
+            else if(currentTrip.getGroup().equals("Facebook")) {
+                Log.i("LIST ACTIVITY", "Facebook");
+                mRowLayout.setBackgroundColor(Color.parseColor("#0066ff"));
+            }
+            else{
+                Log.i("LIST ACTIVITY", "Else ... " + currentTrip.getGroup());
+            }
+//            else{
+//                mRowLayout.setBackgroundColor(Color.parseColor("#000000"));
+//
+//            }
+
+
+
             //Fill the view
             ImageView imageView = (ImageView) itemView.findViewById(R.id.list_image);
             imageView.setImageResource(getResources().getIdentifier("myphoto", "drawable", getPackageName()));
@@ -136,7 +158,7 @@ public class ListActivity extends AppCompatActivity{
             date.setText("Date: "+ft.format(currentTrip.getTime()));
 
             TextView price = (TextView) itemView.findViewById(R.id.priceList);
-            price.setText("Price: " +Integer.toString(currentTrip.getPrice())+"£");
+            price.setText("Price: £" +Integer.toString(currentTrip.getPrice()));
 
 
             return itemView;
