@@ -9,11 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- */
 public class MainActivity extends ActionBarActivity {
 
     // Declaring Your View and Variables
@@ -25,11 +23,12 @@ public class MainActivity extends ActionBarActivity {
     CharSequence Titles[]={"Me","Seats", "Luggage","Post"};
     int Numboftabs =4;
 
+    Profile profile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -61,7 +60,6 @@ public class MainActivity extends ActionBarActivity {
 
 
         populateTripView();
-
 
     }
 
@@ -121,8 +119,14 @@ public class MainActivity extends ActionBarActivity {
         trips.addTrip(new Trip("Viktor3", "Gabrovo", "London", new Date(), 6, true, true, true, true, "msg", 30));
         trips.addTrip(new Trip("Viktor4", "maikati", "bashtati", new Date(), 3, true, true, true, true, "msg", 40));
 
-
-
+        profile = Profile.getInstance();
+        profile.setTrips(trips.getTrips());
 
     }
+
+    public Profile getProfile(){
+        return profile;
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package samples.exoguru.materialtabss;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,28 +23,36 @@ public class Tab1 extends Fragment {
     private ArrayList<String> posts;
     private ArrayList<Trip> trips;
 
+    private MainActivity myActivity;
+
+    @Override
+    public void onAttach(Activity myActivity){
+        super.onAttach(myActivity);
+        this.myActivity = (MainActivity) myActivity;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_1,container,false);
 
-       // String[] posts = {"Glasgow -> London", "Mezdra -> Sofia", "Varna -> Bourgas", "Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad"};
         String[] history = {"Glasgow -> London", "Mezdra -> Sofia"};
 
         posts = new ArrayList<>();
-        posts.add("Glasgow -> London");
-        posts.add("Mezdra -> Sofia");
-        posts.add("Varna -> Bourgas");
-        posts.add("Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad");
+//        posts.add("Glasgow -> London");
+//        posts.add("Mezdra -> Sofia");
+//        posts.add("Varna -> Bourgas");
+//        posts.add("Vratza -> ASDAsdaxaad12w3sadas213asdsadsadasdasdadasdasdasdasdasdad");
 
 
+        Profile profile = myActivity.getProfile();
+        trips = profile.getTrips();
 
 
-        //Log.i(TAG, "Profile: " + profile.toString());
+        Log.i(TAG, "Profile: " + profile.toString() + " num of trips: " + profile.getTrips().size());
 
-
-//        for(Trip trip : trips){
-//            posts.add(trip.toString());
-//        }
+        for(Trip trip : trips){
+            posts.add(trip.toString());
+        }
 
        // Log.i("TAG", trips.)
 

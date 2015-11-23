@@ -1,6 +1,7 @@
 package samples.exoguru.materialtabss;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -85,6 +86,9 @@ public class Trip implements Serializable {
     }
 
     public String toString(){
-        return this.fromTown + " to " + this.toTown;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+
+
+        return this.fromTown + " to " + this.toTown + " at " + sdf.format(this.time) + " with " + this.seatsAvailable + " seats available";
     }
 }
