@@ -98,8 +98,8 @@
         float:fletPadding="1dp"
         android:id="@+id/view3"
         android:layout_below="@+id/view2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignLeft="@+id/view2"
+        android:layout_alignStart="@+id/view2">
 
         <EditText
             android:id="@+id/depart"
@@ -110,6 +110,16 @@
             android:layout_below="@+id/view2"
             android:layout_marginTop="52dp" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/marker3"
+        android:src="@drawable/calendar"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
+        android:layout_alignBottom="@+id/view3"
+        android:layout_alignRight="@+id/marker2"
+        android:layout_alignEnd="@+id/marker2" />
 
 
 
@@ -131,6 +141,18 @@
             android:layout_below="@+id/view2"
             android:layout_marginTop="52dp" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/marker4"
+        android:src="@drawable/seat_belt"
+        android:adjustViewBounds="false"
+        android:baselineAlignBottom="false"
+        android:layout_alignBottom="@+id/view4"
+        android:layout_toLeftOf="@+id/view4"
+        android:layout_toStartOf="@+id/view4" />
+
 
     <com.andexert.expandablelayout.library.ExpandableLayout
         android:id="@+id/advancedOptions"
