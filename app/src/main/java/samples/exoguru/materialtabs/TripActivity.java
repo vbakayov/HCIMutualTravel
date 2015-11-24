@@ -1,32 +1,34 @@
 package samples.exoguru.materialtabs;
 
+import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import samples.exoguru.materialtabss.NotificationActivity;
 import samples.exoguru.materialtabss.R;
 import samples.exoguru.materialtabss.Route;
 import samples.exoguru.materialtabss.Trip;
@@ -53,11 +55,60 @@ public class TripActivity extends FragmentActivity implements OnMapReadyCallback
         ((TextView) findViewById(R.id.price)).setText(String.valueOf(clickedTrip.getPrice() + " £"));
         ((TextView) findViewById(R.id.fromTown)).setText(clickedTrip.getFromTown());
         ((TextView) findViewById(R.id.toTown)).setText(clickedTrip.getToTown());
-        ((CheckBox) findViewById(R.id.smoking)).setButtonDrawable((clickedTrip.isSmoking())? R.drawable.smoking_on: R.drawable.smoking_off);
+        ((CheckBox) findViewById(R.id.smoking)).setButtonDrawable((clickedTrip.isSmoking()) ? R.drawable.smoking_on : R.drawable.smoking_off);
         ((CheckBox) findViewById(R.id.pets)).setButtonDrawable((clickedTrip.isPets())? R.drawable.pets_on:R.drawable.pets_off);
         ((CheckBox) findViewById(R.id.food)).setButtonDrawable((clickedTrip.isFood())? R.drawable.food_on: R.drawable.food_off);
         ((CheckBox) findViewById(R.id.music)).setButtonDrawable((clickedTrip.isMusic()) ? R.drawable.music_on : R.drawable.music_off);
 
+
+        Button confirm= (Button) findViewById(R.id.buttonSeatsPost);
+
+        confirm.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+
+                Toast toast = Toast.makeText(TripActivity.this, "Your Request has been Sent", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                sendNotifaction();
+            }
+        });
+
+    }
+
+    private void sendNotifaction(){
+        int notificationId = 001;
+
+        Bitmap background = BitmapFactory.decodeResource(this.getResources(),
+                R.drawable.myphoto);
+
+// Build intent for notification content
+        Intent viewIntent = new Intent(this,NotificationActivity.class);
+       // viewIntent.putExtra(EXTRA_EVENT_ID, eventId);
+        PendingIntent viewPendingIntent =
+                PendingIntent.getActivity(this, 0, viewIntent, 0);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.post)
+                        .setContentTitle("Someone has sent you a request")
+                        .setContentText("Your post has been accepted")
+                        .setContentIntent(viewPendingIntent)
+                        .setLargeIcon(background)
+                        .setStyle(new NotificationCompat.BigPictureStyle()
+                                .bigPicture(background));
+
+// Get an instance of the NotificationManager service
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(this);
+
+// Build the notification and issues it with notification manager.
+        notificationManager.notify(notificationId, notificationBuilder.build());
+
+        notificationManager =
+                NotificationManagerCompat.from(this);
+
+// Issue the notification with notification manager.
+        notificationManager.notify(notificationId, notificationBuilder.build());
     }
 
 
