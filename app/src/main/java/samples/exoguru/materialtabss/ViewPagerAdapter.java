@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.astuetz.PagerSlidingTabStrip;
  * Created by Viktor on 11/5/2015.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
+
     private int tabIcons[] = {R.drawable.icon_profile, R.drawable.seat_belt1, R.drawable.luggage, R.drawable.post};
 
 
@@ -27,13 +29,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter implements Pager
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(Context ctx, FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter(Context ctx, FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
         mContext = ctx;
         this.Titles = mTitles;
         this.NumbOfTabs = mNumbOfTabsumb;
 
+
+
     }
+
 
     //This method return the fragment for the every position in the View Pager
     @Override

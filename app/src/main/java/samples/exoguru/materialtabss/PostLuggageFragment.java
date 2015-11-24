@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Viktor on 11/19/2015.
  */
-public class LuggagePostFragment extends Fragment {
+public class PostLuggageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -1,7 +1,6 @@
 package samples.exoguru.materialtabss;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,11 @@ import java.util.ArrayList;
 public class CustomListViewAdapter extends ArrayAdapter<String> {
 
     private static final String TAG = "Active posts list view";
+    private  CallBackEditPostPostion callback;
 
-    public CustomListViewAdapter(Context context, ArrayList<String> posts){
+    public CustomListViewAdapter(Context context, ArrayList<String> posts, CallBackEditPostPostion callback){
         super(context, R.layout.custom_post_row_layout, posts);
+        this.callback = callback;
     }
 
     @Override
@@ -35,25 +36,33 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
         mPostText.setText(postItem);
         mEditIcon.setImageResource(R.drawable.edit);
         mDeleteIcon.setImageResource(R.drawable.delete);
-
+        mEditIcon.setTag(position);
+        mDeleteIcon.setTag(position);
         mEditIcon.setOnClickListener(
                 new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.i(TAG, "EDIT BUTTON CLICKED");
+                    public void onClick(View arg0) {
+                        int position=(Integer)arg0.getTag();
+                        callback.passPosition(position, "edit");
+                       // Log.i(TAG, "EDIT BUTTON CLICKED"+ Integer.toString(position));
                     }
                 }
         );
 
         mDeleteIcon.setOnClickListener(
                 new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.i(TAG, "Delete BUTTON CLICKED");
+                    public void onClick(View arg0) {
+                        int position=(Integer)arg0.getTag();
+                        callback.passPosition(position,"delete");
                     }
                 }
         );
 
         return customView;
 
+    }
+
+    public void register(CallBackEditPostPostion callback) {
+        callback.passPosition(2, "delete");
     }
 
 

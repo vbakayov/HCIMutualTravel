@@ -25,7 +25,7 @@ public class Tab4 extends Fragment {
         v.findViewById(R.id.buttonSeatsPost).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(((ViewGroup)(getView())).getId(), new SeatPostFragment());
+                ft.replace(R.id.postFragment, new SeatPostFragment());
                 ft.addToBackStack(null);
                 bt2.setVisibility(View.INVISIBLE);
                 bt1.setVisibility(View.INVISIBLE);
@@ -38,7 +38,7 @@ public class Tab4 extends Fragment {
         v.findViewById(R.id.buttonLuggagePost).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(((ViewGroup)(getView())).getId(), new LuggagePostFragment());
+                ft.replace(((ViewGroup)(getView())).getId(), new PostLuggageFragment());
                 ft.addToBackStack(null);
                 bt1.setVisibility(View.INVISIBLE);
                 bt2.setVisibility(View.INVISIBLE);

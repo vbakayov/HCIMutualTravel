@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.support.v4.app.FragmentManager;
 import android.widget.Button;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -39,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(this,getSupportFragmentManager(),Titles,Numboftabs);
+        adapter = new ViewPagerAdapter(this,getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
