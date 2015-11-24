@@ -79,17 +79,17 @@ public class Tab1 extends Fragment {
 
         // rating bar
         RatingBar rb = (RatingBar) v.findViewById(R.id.mRating);
+        rb.setRating(Float.parseFloat("3.4"));
 
-
-        rb.setOnRatingBarChangeListener(
-                new RatingBar.OnRatingBarChangeListener() {
-                    @Override
-                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean b) {
-                        String numStars = String.valueOf(rating);
-                        Toast.makeText(Tab1.super.getActivity(), "The new rating is " + numStars,Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
+                rb.setOnRatingBarChangeListener(
+                        new RatingBar.OnRatingBarChangeListener() {
+                            @Override
+                            public void onRatingChanged(RatingBar ratingBar, float rating, boolean b) {
+                                String numStars = String.valueOf(rating);
+                                Toast.makeText(Tab1.super.getActivity(), "The new rating is " + numStars, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
         
         return v;
     }

@@ -108,8 +108,8 @@ public class MainActivity extends ActionBarActivity {
         trips.addTrip(new Trip("Viktor2", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 20, "Contacts"));
         trips.addTrip(new Trip("Viktor3", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 30, "Facebook"));
         trips.addTrip(new Trip("Viktor4", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 40, "Facebook"));
-        trips.addTrip(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 50, "Facebook"));
-        trips.addTrip(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 60, "Default"));
+        trips.addTrip(new Trip("Viktor5", "Sevlievo", "London", new Date(), 3, false, false, true, true, "msg", 50, "Facebook"));
+        trips.addTrip(new Trip("Viktor6", "Sevlievo", "London", new Date(), 3, true, true, false, false, "msg", 60, "Default"));
         trips.addTrip(new Trip("Viktor7", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 70, "Default"));
         trips.addTrip(new Trip("Viktor8", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 80, "Default"));
         trips.addTrip(new Trip("Viktor9", "Sevlievo", "London", new Date(), 3, true, true, true, true, "msg", 90, "Default"));

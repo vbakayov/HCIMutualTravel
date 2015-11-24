@@ -2,8 +2,8 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:fillViewport="true">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -17,7 +17,8 @@
         android:text="@string/user_name"
         android:id="@+id/mUsername"
         android:layout_alignTop="@+id/mProfileImage"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/buttonSeatsPost"
+        android:layout_alignEnd="@+id/buttonSeatsPost" />
 
     <ImageView
         android:layout_width="100dp"
@@ -44,7 +45,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="90£"
-        android:id="@+id/textView4"
+        android:id="@+id/price"
         android:layout_above="@+id/mRating"
         android:layout_toRightOf="@+id/mUsername"
         android:layout_toEndOf="@+id/mUsername"
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Glasgow"
-        android:id="@+id/textView5"
+        android:id="@+id/fromTown"
         android:layout_marginTop="28dp"
         android:layout_below="@+id/mProfileImage"
         android:layout_alignLeft="@+id/mProfileImage"
@@ -67,17 +68,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="London"
-        android:id="@+id/textView6"
+        android:id="@+id/toTown"
+        android:paddingLeft="40dp"
         android:layout_alignTop="@+id/imageView"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/imageView"
         android:src="@drawable/swap"
-        android:layout_alignTop="@+id/textView5"
+        android:layout_alignTop="@+id/fromTown"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -88,8 +90,8 @@
         android:id="@+id/textView7"
         android:layout_marginTop="36dp"
         android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5" />
+        android:layout_alignLeft="@+id/fromTown"
+        android:layout_alignStart="@+id/fromTown" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -148,6 +150,22 @@
         android:layout_below="@+id/relativeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonSeatsPost"
+        android:text="Accept Trip"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 
 
 

@@ -1,10 +1,19 @@
 package samples.exoguru.materialtabs;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,6 +47,16 @@ public class TripActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        ((TextView) findViewById(R.id.mUsername)).setText(clickedTrip.getOwnerName());
+        ((RatingBar) findViewById(R.id.mRating)).setRating(Float.parseFloat("3.4"));;
+        ((TextView) findViewById(R.id.price)).setText(String.valueOf(clickedTrip.getPrice() + " £"));
+        ((TextView) findViewById(R.id.fromTown)).setText(clickedTrip.getFromTown());
+        ((TextView) findViewById(R.id.toTown)).setText(clickedTrip.getToTown());
+        ((CheckBox) findViewById(R.id.smoking)).setButtonDrawable((clickedTrip.isSmoking())? R.drawable.smoking_on: R.drawable.smoking_off);
+        ((CheckBox) findViewById(R.id.pets)).setButtonDrawable((clickedTrip.isPets())? R.drawable.pets_on:R.drawable.pets_off);
+        ((CheckBox) findViewById(R.id.food)).setButtonDrawable((clickedTrip.isFood())? R.drawable.food_on: R.drawable.food_off);
+        ((CheckBox) findViewById(R.id.music)).setButtonDrawable((clickedTrip.isMusic()) ? R.drawable.music_on : R.drawable.music_off);
 
     }
 
