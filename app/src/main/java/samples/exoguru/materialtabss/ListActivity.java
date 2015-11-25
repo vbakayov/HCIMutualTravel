@@ -152,6 +152,9 @@ public class ListActivity extends AppCompatActivity{
             TextView fromTown = (TextView) itemView.findViewById(R.id.toList);
             fromTown.setText(currentTrip.getToTown());
 
+            TextView seats = ((TextView) itemView.findViewById(R.id.seats));
+            seats.setText(currentTrip.getSeatsAvailable()+" seats available");
+
             TextView date = (TextView) itemView.findViewById(R.id.dateList);
             SimpleDateFormat ft =
                     new SimpleDateFormat("dd/MM/yyyy");

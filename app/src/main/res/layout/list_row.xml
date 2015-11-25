@@ -65,7 +65,7 @@
 
     <!-- Rightend Duration -->
     <TextView
-        android:id="@+id/duration"
+        android:id="@+id/seats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
